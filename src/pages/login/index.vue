@@ -1,14 +1,15 @@
 <template lang="pug">
 .loginImage
-  q-img(:src="formData.loginImage",spinner-color="white",style="display:flex;max-height: 300px; max-width: 300px")
-.position
-  q-form.q-gutter-md(@submit="onSubmit")
-    q-input(type="email",filled,v-model="formData.email",label="email" required)
-    q-input(v-show="my_type",type="password",filled,v-model="formData.password",label="password" required)
-    q-input(v-show="!my_type",type="text",filled,v-model="formData.password",label="password" required)
+  q-img(:src="form.loginImage",spinner-color="white",style="display:flex;max-height: 300px; max-width: 300px")
 
-    q-toggle(v-model="formData.viewPass",@click="show_pass",label="show password" )
-    q-toggle(v-model="formData.remember",label="remember me")
+.position
+  q-form.q-gutter-md(@submit.prevent="submit")
+    q-input(type="email",filled,v-model="form.email",label="Email" required)
+    q-input(v-show="my_type",type="password",filled,v-model="form.password",label="Password" required)
+    q-input(v-show="!my_type",type="text",filled,v-model="form.password",label="Password")
+
+    q-toggle(v-model="form.viewPass",@click="show_pass",label="show password" color="pink",,style="float:left;")
+
     .btnSpace
       q-btn(color='blue',type="submit",label="Submit" )
       q-btn(to='/reset',color='red',type='submit') Reset
@@ -32,28 +33,36 @@
     display: flex;
     justify-content: space-between
   }
-
+  /* form{
+    min-width: 50%;
+  } */
 
 </style>
 
 
 <script setup>
 import { onMounted, reactive, ref } from 'vue';
+import { api} from 'boot/axios'
 
-const formData =
-        reactive({
-              email:"",
-              password:"",
-              remember:false,
-              viewPass:false,
-              loginImage:ref('key.png')
-         })
+const form = reactive({
+    email: '',
+    password: '',
+    viewPass:false,
+    loginImage : ref('key.png')
+});
 
 const my_type = ref(true)
 
-const onSubmit = ()=>{
-  console.log(formData)
+const submit = () => {
+    api.get('/sanctum/csrf-cookie').then(response => {
+            api.post('/login', form).then(response=>{
+                    console.log(response)
+                }).catch(error => {
+                      console.log(error)
+                })
+          })
 }
+
 
 const show_pass = ()=>{
   my_type.value = !my_type.value
