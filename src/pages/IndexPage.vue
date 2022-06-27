@@ -1,17 +1,24 @@
-<template>
-  <q-page class="flex flex-center">
-    <img
-      alt="Quasar logo"
-      src="~assets/quasar-logo-vertical.svg"
-      style="width: 200px; height: 200px"
-    >
-  </q-page>
+<template pug>
+
 </template>
 
-<script>
-import { defineComponent } from 'vue'
+<script setup>
+import { onMounted, reactive, ref } from 'vue';
+import { api } from 'boot/axios'
 
-export default defineComponent({
-  name: 'IndexPage'
+const schools = () => {
+    api.get('http://127.0.0.1:8000/sanctum/csrf-cookie').then(response => {
+            api.get('http://127.0.0.1:8000/api/schools').then(response=>{
+                    console.log(response)
+                }).catch(error => {
+                      console.log(error)
+                })
+          })
+}
+
+onMounted(()=>{
+    schools()
 })
+
+
 </script>
