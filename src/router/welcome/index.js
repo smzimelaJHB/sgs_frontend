@@ -1,15 +1,15 @@
-const home =
+const welcome =
 {
   path: '/',
   component: () =>
       import ('layouts/MainLayout.vue'),
   children: [{
-          path: '/home',
+          path: '',
           component: () =>
-              import ('pages/home/index.vue')
+              import ('pages/IndexPage.vue')
       }]
   }
 
-export default home
+export default welcome
 
 
