@@ -1,27 +1,16 @@
 <template lang="pug">
 .position
-  q-form.q-gutter-md(@submit="onSubmit")
-    q-input(type="text",filled,v-model="formData.fullName",label="Full Names" required)
-    q-input(type="email",filled,v-model="formData.email",label="Email" required)
-    q-input(type="number",filled,v-model="formData.IDNumber",label="ID Number" required)
-    q-input(type="number",filled,v-model="formData.Cell",label="Cell" required)
-
-    .q-pa-md
-      .q-gutter-sm()
-        q-radio(v-model="formData.gender",checked-icon="task_alt",unchecked-icon="panorama_fish_eye",val="f",label="Female")
-        q-radio(v-model="formData.gender",checked-icon="task_alt",unchecked-icon="panorama_fish_eye",val="o",label="Other")
-        q-radio(v-model="formData.gender",checked-icon="task_alt",unchecked-icon="panorama_fish_eye",val="m",label="Male")
-
-
+  q-form.q-gutter-md(@submit.prevent="submit")
+    q-input(type="text",filled,v-model="form.name",label="Name" required)
+    q-input(type="email",filled,v-model="form.email",label="Email" required)
     //- 1st password field
-    q-input(v-show="my_type",type="password",filled,v-model="formData.password",label="Password" required)
-    q-input(v-show="!my_type",type="text",filled,v-model="formData.password",label="Password")
-
+    q-input(v-show="my_type",type="password",filled,v-model="form.password",label="Password" required)
+    q-input(v-show="!my_type",type="text",filled,v-model="form.password",label="Password")
     //- 2nd password field
-    q-input(v-show="my_type",type="password",filled,v-model="formData.password2",label="Repeat Password" required)
-    q-input(v-show="!my_type",type="text",filled,v-model="formData.password2",label="Repeat Password")
+    q-input(v-show="my_type",type="password",filled,v-model="form.password_confirmation",label="Repeat Password" required)
+    q-input(v-show="!my_type",type="text",filled,v-model="form.password_confirmation",label="Repeat Password")
 
-    q-toggle(v-model="formData.viewPass",@click="show_pass",label="show password" color="pink",,style="float:left;")
+    q-toggle(v-model="form.viewPass",@click="show_pass",label="show password" color="pink",,style="float:left;")
 
     q-btn(color='blue',type="submit",label="Submit",style="float:right;")
 
@@ -44,24 +33,29 @@
 
 <script setup>
 import { onMounted, reactive, ref } from 'vue';
+import { api} from 'boot/axios'
 
-const formData = reactive({
-            email:"",
-            password:"",
-            password2:"",
-            remember:false,
-            viewPass:false,
-            IDNumber:"",
-            Cell:"",
-            gender:"m",
-            row:""
-         })
+const form = reactive({
+    name: '',
+    email: '',
+    password: '',
+    password_confirmation: '',
+    terms: false,
+    viewPass:false,
+});
 
 const my_type = ref(true)
 
-const onSubmit =()=>{
-     console.log(formData)
+const submit = () => {
+    api.get('/sanctum/csrf-cookie').then(response => {
+            api.post('/register', form).then(response=>{
+                    console.log(response)
+                }).catch(error => {
+                      console.log(error)
+                })
+          })
 }
+
 
 const show_pass = ()=>{
   my_type.value = !my_type.value

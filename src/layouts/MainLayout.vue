@@ -26,7 +26,7 @@
 
             <q-item active clickable v-ripple to="/login">
               <q-item-section avatar>
-                <q-icon name="loging" />
+                <q-icon name="login" />
               </q-item-section>
 
               <q-item-section>
@@ -34,7 +34,7 @@
               </q-item-section>
             </q-item>
 
-            <q-item clickable v-ripple to="/signup">
+            <q-item clickable v-ripple to="/register">
               <q-item-section avatar>
                 <q-icon name="register" />
               </q-item-section>

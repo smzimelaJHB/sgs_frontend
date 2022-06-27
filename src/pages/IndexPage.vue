@@ -26,15 +26,18 @@ const columns = ref([
 ])
 
 const rows = ref([])
+let filter = ref();
 
-const csrf = async ()=> api.get('http://127.0.0.1:8000/sanctum/csrf-cookie');
-const schools = async () => {
-    await csrf();
-    await api.get('http://127.0.0.1:8000/api/schools').then(response=>{
-            rows.value = response.data.data;
-        }).catch(error => {
-                console.log(error)
-        })
+
+
+const schools = () => {
+    api.get('/sanctum/csrf-cookie').then(response => {
+            api.get('/api/schools').then(response=>{
+                    rows.value = response.data.data
+                }).catch(error => {
+                      console.log(error)
+                })
+          })
 }
 
 onMounted(()=>{
