@@ -13,7 +13,6 @@ const logout = () => {
   api
     .post("/logout")
     .then((response) => {
-      console.log(response);
       router.push("/");
     })
     .catch((error) => {

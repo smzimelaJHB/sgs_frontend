@@ -1,6 +1,6 @@
 <template lang="pug">
 .loginImage
-  q-img(:src="form.loginImage",spinner-color="white",style="display:flex;max-height: 300px; max-width: 300px")
+  q-img(:src="loginImage",spinner-color="white",style="display:flex;max-height: 300px; max-width: 300px")
 
 .position
   q-form.q-gutter-md(@submit.prevent="submit")
@@ -44,11 +44,11 @@ import { api } from "boot/axios";
 import { useRouter } from "vue-router";
 
 const router = useRouter();
+const loginImage = ref("key.png");
 const form = reactive({
   email: "",
   password: "",
   viewPass: false,
-  loginImage: ref("key.png"),
 });
 
 const my_type = ref(true);
