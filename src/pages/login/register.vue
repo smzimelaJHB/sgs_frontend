@@ -50,7 +50,7 @@ const submit = () => {
   api
     .post("/register", form)
     .then((response) => {
-      router.push("/dashboard");
+      router.push("/verify-email");
     })
     .catch((error) => {
       console.log(error);
