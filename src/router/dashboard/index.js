@@ -1,15 +1,15 @@
-const home =
+const dashboard =
 {
   path: '/',
   component: () =>
       import ('layouts/MainLayout.vue'),
   children: [{
-          path: '/home',
+          path: '/dashboard',
           component: () =>
-              import ('pages/home/index.vue')
+              import ('pages/dashboard/index.vue')
       }]
   }
 
-export default home
+export default dashboard
 
 

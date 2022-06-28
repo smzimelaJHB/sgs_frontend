@@ -1,7 +1,7 @@
 import welcome from "./welcome";
 import login from "./login";
-import home from "./home";
+import dashboard from "./dashboard";
 
-const routes = [welcome,login,home];
+const routes = [welcome,login,dashboard];
 
 export default routes;
