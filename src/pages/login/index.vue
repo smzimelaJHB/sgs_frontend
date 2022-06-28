@@ -54,17 +54,15 @@ const form = reactive({
 const my_type = ref(true);
 
 const submit = () => {
-  api.get("/sanctum/csrf-cookie").then((response) => {
-    api
-      .post("/login", form)
-      .then((response) => {
-        console.log(response);
-        router.push("/dashboard");
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  });
+  api
+    .post("/login", form)
+    .then((response) => {
+      console.log(response);
+      router.push("/dashboard");
+    })
+    .catch((error) => {
+      console.log(error);
+    });
 };
 
 const show_pass = () => {

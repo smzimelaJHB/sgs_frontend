@@ -17,7 +17,7 @@ const login = {
     {
       path: "/email",
       component: () => import("pages/login/email.vue"),
-    },
+    }
   ],
 };
 
