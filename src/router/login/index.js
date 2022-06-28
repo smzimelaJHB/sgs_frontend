@@ -11,8 +11,12 @@ const login = {
       component: () => import("pages/login/register.vue"),
     },
     {
-      path: "/reset",
-      component: () => import("pages/login/reset.vue"),
+      path: "/forgot-password",
+      component: () => import("pages/login/forgotPass.vue"),
+    },
+    {
+      path: "//password-reset/:token",
+      component: () => import("pages/login/resetPass.vue"),
     },
     {
       path: "/email",

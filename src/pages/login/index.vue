@@ -12,7 +12,7 @@
 
     .btnSpace
       q-btn(color='blue',type="submit",label="Submit" )
-      q-btn(to='/reset',color='red',type='submit') Reset
+      q-btn(to='/forgot-password',color='red',type='submit') Reset Pass
 
 </template>
 
@@ -53,11 +53,13 @@ const form = reactive({
 
 const my_type = ref(true);
 
+let logged = ref(false);
+
 const login = () => {
   api
     .post("/login", form)
     .then((response) => {
-      console.log(response);
+      logged.value = true;
       router.push("/dashboard");
     })
     .catch((error) => {
