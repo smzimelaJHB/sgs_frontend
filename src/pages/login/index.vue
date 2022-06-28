@@ -3,7 +3,7 @@
   q-img(:src="loginImage",spinner-color="white",style="display:flex;max-height: 300px; max-width: 300px")
 
 .position
-  q-form.q-gutter-md(@submit.prevent="submit")
+  q-form.q-gutter-md(@submit.prevent="login")
     q-input(type="email",filled,v-model="form.email",label="Email" required)
     q-input(v-show="my_type",type="password",filled,v-model="form.password",label="Password" required)
     q-input(v-show="!my_type",type="text",filled,v-model="form.password",label="Password")
@@ -53,7 +53,7 @@ const form = reactive({
 
 const my_type = ref(true);
 
-const submit = () => {
+const login = () => {
   api
     .post("/login", form)
     .then((response) => {
