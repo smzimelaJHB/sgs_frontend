@@ -1,41 +1,36 @@
 <template lang="pug">
-.loginImage
-  q-img(:src="loginImage",spinner-color="white",style="display:flex;max-height: 300px; max-width: 300px")
-
-.position
-  q-form.q-gutter-md(@submit.prevent="login")
-    q-input(type="email",filled,v-model="form.email",label="Email" required)
-    q-input(v-show="my_type",type="password",filled,v-model="form.password",label="Password" required)
-    q-input(v-show="!my_type",type="text",filled,v-model="form.password",label="Password")
-
-    q-toggle(v-model="form.viewPass",@click="show_pass",label="show password" color="pink",,style="float:left;")
+.container
+  .position
+    q-img(:src="loginImage",spinner-color="white",style="display:flex;max-height: 300px; max-width: 300px")
+    q-form.q-gutter-md(@submit.prevent="login")
+      q-input(type="email",filled,v-model="form.email",label="Email" required)
+      q-input(v-show="my_type",type="password",filled,v-model="form.password",label="Password" required)
+      q-input(v-show="!my_type",type="text",filled,v-model="form.password",label="Password")
 
     .btnSpace
-      q-btn(color='blue',type="submit",label="Submit" )
+      q-toggle(v-model="form.viewPass",@click="show_pass",label="show pass" color="pink")
+      q-btn(color='blue',type="submit",label="Submit")
       q-btn(to='/forgot-password',color='red',type='submit') Reset Pass
-
 </template>
 
 <style>
-.loginImage {
+.container {
   display: flex;
   max-width: 100%;
   justify-content: center;
-  margin-top: 5%;
 }
 .position {
   display: flex;
-  max-width: 100%;
+  max-width: 70%;
   justify-content: center;
   margin-top: 5%;
+  flex-direction: column;
 }
 .btnSpace {
+  margin-top: 5%;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
 }
-/* form{
-    min-width: 50%;
-  } */
 </style>
 
 <script setup>
