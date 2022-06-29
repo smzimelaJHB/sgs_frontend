@@ -1,68 +1,46 @@
 <template>
   <q-layout view="lHh Lpr lFf">
-      <q-header elevated class="bg-cyan-8">
-        <q-toolbar>
-          <q-toolbar-title style="text-align:center">J&J School Grading System</q-toolbar-title>
-          <q-btn flat @click="drawer = !drawer" round dense icon="menu" />
-        </q-toolbar>
-      </q-header>
-     <q-drawer
-        v-model="drawer"
-        show-if-above
-        :width="200"
-        :breakpoint="400"
-      >
-        <q-scroll-area style="height: calc(100% - 150px);  border-right: 1px solid #ddd">
-          <q-list padding>
-            <q-item clickable v-ripple to="/">
-              <q-item-section avatar>
-                <q-icon name="home" />
-              </q-item-section>
+    <q-header elevated class="bg-cyan-8">
+      <q-toolbar>
+        <q-toolbar-title style="text-align: center">
+          J&J School Grading System</q-toolbar-title
+        >
+      </q-toolbar>
+      <q-toolbar>
+        <q-list style="display: inline-flex; color: orange">
+          <q-item clickable v-ripple to="/">
+            <q-item-section avatar>
+              <q-icon name="home" color="orange" />
+            </q-item-section>
 
-              <q-item-section>
-                Home
-              </q-item-section>
-            </q-item>
+            <q-item-section style="color: white"> Home </q-item-section>
+          </q-item>
 
-            <q-item active clickable v-ripple to="/login">
-              <q-item-section avatar>
-                <q-icon name="login" />
-              </q-item-section>
+          <q-item active clickable v-ripple to="/login">
+            <q-item-section avatar>
+              <q-icon name="login" color="orange" />
+            </q-item-section>
 
-              <q-item-section>
-                Login
-              </q-item-section>
-            </q-item>
+            <q-item-section style="color: white"> Login </q-item-section>
+          </q-item>
 
-            <q-item clickable v-ripple to="/register">
-              <q-item-section avatar>
-                <q-icon name="register" />
-              </q-item-section>
-
-              <q-item-section >
-                Signup
-              </q-item-section>
-            </q-item>
-
-          </q-list>
-        </q-scroll-area>
-      </q-drawer>
+          <q-item clickable v-ripple to="/register">
+            <q-item-section style="color: white"> Signup </q-item-section>
+          </q-item>
+        </q-list>
+      </q-toolbar>
+    </q-header>
 
     <q-page-container>
       <router-view />
     </q-page-container>
+
+    <q-footer elevated class="teal lighten-1 white--text text-center">
+      <q-toolbar>
+        <q-toolbar-title> </q-toolbar-title>
+      </q-toolbar>
+    </q-footer>
   </q-layout>
 </template>
 
-
-<script>
-import { ref } from 'vue'
-
-export default {
-  setup () {
-    return {
-      drawer: ref(false)
-    }
-  }
-}
-</script>
+<script></script>
