@@ -17,12 +17,12 @@ import { computed, ref } from "vue";
 import { api } from "boot/axios";
 
 import { useQuasar } from "quasar";
+const $q = useQuasar();
 
 const setStatus = ref();
 const setErrors = ref();
 const status = computed(() => setStatus.value);
 const errors = computed(() => setErrors.value);
-const $q = useQuasar();
 
 const processing = ref(false);
 const loginImage = ref("reset.png");

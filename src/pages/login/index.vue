@@ -7,10 +7,10 @@
       q-input(v-show="my_type",type="password",filled,v-model="form.password",label="Password" required)
       q-input(v-show="!my_type",type="text",filled,v-model="form.password",label="Password")
 
-    .btnSpace
-      q-toggle(v-model="form.viewPass",@click="show_pass",label="show pass" color="pink")
-      q-btn(color='blue',type="submit",label="Submit")
-      q-btn(to='/forgot-password',color='red',type='submit') Reset Pass
+      .btnSpace
+        q-toggle(v-model="viewPass",@click="show_pass",label="show pass" color="pink")
+        q-btn(color='blue',type="submit",label="Submit")
+        q-btn(to='/forgot-password',color='red',type='submit') Reset Pass
 </template>
 
 <style>
@@ -37,28 +37,52 @@
 import { onMounted, reactive, ref } from "vue";
 import { api } from "boot/axios";
 import { useRouter } from "vue-router";
+import { useQuasar } from "quasar";
+
+const $q = useQuasar();
 
 const router = useRouter();
 const loginImage = ref("key.png");
+const viewPass = ref(false);
+const credentials = ref(true);
+
 const form = reactive({
   email: "",
   password: "",
-  viewPass: false,
 });
 
 const my_type = ref(true);
-
 let logged = ref(false);
 
-const login = () => {
-  api
+const triggerNegative = (msg) => {
+  $q.notify({
+    type: "negative",
+    message: msg,
+    position: "bottom",
+  });
+};
+
+const invalidDetails = () => {
+  $q.notify({
+    type: "negative",
+    position: "center",
+    timeout: 9000,
+    textColor: "white",
+    message: "Invalid email or password!",
+  });
+};
+
+const login = async () => {
+  await api
     .post("/login", form)
     .then((response) => {
       logged.value = true;
       router.push("/dashboard");
     })
     .catch((error) => {
-      console.log(error);
+      triggerNegative(error.response.statusText);
+      credentials.value = false;
+      invalidDetails();
     });
 };
 
