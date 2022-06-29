@@ -37,7 +37,7 @@
 
     <q-footer elevated class="teal lighten-1 white--text text-center">
       <q-toolbar>
-        <q-toolbar-title> </q-toolbar-title>
+        <q-toolbar-title> 2022 - ST Mzimela</q-toolbar-title>
       </q-toolbar>
     </q-footer>
   </q-layout>
