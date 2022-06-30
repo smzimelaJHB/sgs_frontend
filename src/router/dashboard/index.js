@@ -2,7 +2,7 @@ const dashboard =
 {
   path: '/',
   component: () =>
-      import ('layouts/MainLayout.vue'),
+      import ('layouts/AdminLayout.vue'),
   children: [{
           path: '/dashboard',
           component: () =>
