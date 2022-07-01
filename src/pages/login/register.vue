@@ -12,7 +12,7 @@
       q-input(v-show="my_type",type="password",filled,v-model="form.password_confirmation",label="Repeat Password" required)
       q-input(v-show="!my_type",type="text",filled,v-model="form.password_confirmation",label="Repeat Password")
 
-      q-toggle(v-model="form.viewPass",@click="show_pass",label="show password" color="pink",,style="float:left;")
+      q-toggle(v-model="viewPass",@click="show_pass",label="show pass" color="pink",,style="float:left;")
 
       q-btn(color='blue',type="submit",label="Submit",style="float:right;")
 
@@ -35,36 +35,40 @@ form {
 </style>
 
 <script setup>
-import { onMounted, reactive, ref } from "vue";
+
+import { reactive, ref } from "vue";
 import { api } from "boot/axios";
 import { useRouter } from "vue-router";
 
+
 const router = useRouter();
+const terms= false;
+let viewPass= ref(false);
+let my_type = ref(true);
+
 const form = reactive({
   name: "",
   email: "",
   password: "",
   password_confirmation: "",
-  terms: false,
-  viewPass: false,
 });
 
-const my_type = ref(true);
 
-const submit = () => {
-  api
-    .post("/register", form)
-    .then((response) => {
-      router.push("/verify-email");
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-};
+const show_pass = ()=> {
+      my_type.value = !my_type.value;
+  }
 
-const show_pass = () => {
-  my_type.value = !my_type.value;
-};
 
-onMounted(() => {});
+const submit = async ()=>{
+    await api
+      .post("/register", form)
+      .then((response) => {
+        router.push("/verify-email");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
+
 </script>
