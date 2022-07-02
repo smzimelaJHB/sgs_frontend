@@ -19,10 +19,6 @@ const login = {
       component: () => import("pages/login/resetPass.vue"),
     },
     {
-      path: "/email",
-      component: () => import("pages/login/email.vue"),
-    },
-    {
       path: "/verify-email",
       component: () => import("pages/login/verifyEmail.vue"),
     }

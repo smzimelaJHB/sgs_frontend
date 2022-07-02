@@ -9,7 +9,7 @@ import axios from 'axios'
 // for each client)
 const api = axios.create(
   {
-    baseURL: 'http://localhost:8000' ,
+    baseURL: 'https://s-g-s.herokuapp.com/',
     headers: {
     "Access-Control-Allow-Origin": "*",
     'X-Requested-With': 'XMLHttpRequest',
