@@ -8,6 +8,25 @@ q-layout(view="hHr LpR lfr")
 
 
   q-drawer(v-model="leftDrawerOpen", side="left", overlay, behavior="desktop", elevated)
+    q-toolbar
+      q-list(style="color: orange")
+
+        q-item(clickable, v-ripple, to="/")
+          q-item-section(avatar)
+            q-icon(name="home", color="orange")
+          q-item-section(style="color: black") Home
+
+        q-item(clickable, v-ripple, to="/")
+          //- api/schools/edit
+          q-item-section(avatar)
+            q-icon(name="school", color="orange")
+          q-item-section(style="color: black") Schools
+
+        q-item(clickable, v-ripple, to="/")
+          //- api/schools/remove
+          q-item-section(avatar)
+            q-icon(name="people", color="orange")
+          q-item-section(style="color: black") Classes
 
 
   q-drawer.profile(v-model="rightDrawerOpen", side="right", overlay, behavior="mobile", elevated)
