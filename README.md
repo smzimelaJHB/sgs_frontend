@@ -11,7 +11,7 @@ npm install
 
 ### Start the app in development mode (hot-code reloading, error reporting, etc.)
 ```bash
-quasar dev --hostname --port 3000
+quasar dev --port 3000
 ```
 
 
