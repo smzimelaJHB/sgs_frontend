@@ -3,7 +3,6 @@
   .position
     q-img(src="signup.png",spinner-color="white",style="display:flex;max-height: 300px; max-width: 300px")
     q-form.q-gutter-md(@submit.prevent="submit")
-      q-input(type="hidden", name="_token", value="{{ csrf_token() }}")
       q-input(type="text",filled,v-model="form.name",label="Name" required)
       q-input(type="email",filled,v-model="form.email",label="Email" required)
       //- 1st password field
