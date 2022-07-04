@@ -60,6 +60,7 @@ const show_pass = ()=> {
 
 
 const submit = async ()=>{
+  await api.get('/sanctum/csrf-cookie').then(response => {
     await api
       .post("/register", form)
       .then((response) => {
@@ -69,6 +70,7 @@ const submit = async ()=>{
         console.log(error);
         console.log(error.response);
       });
+  });
   }
 
 
