@@ -59,9 +59,9 @@ const show_pass = ()=> {
   }
 
 
-const submit = async ()=>{
-  await api.get('/sanctum/csrf-cookie').then(response => {
-    await api
+const submit = ()=>{
+  api.get('/sanctum/csrf-cookie').then(response => {
+    api
       .post("/register", form)
       .then((response) => {
         router.push("/verify-email");
