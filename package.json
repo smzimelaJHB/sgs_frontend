@@ -2,13 +2,11 @@
   "name": "sgs-frontend",
   "version": "0.0.1",
   "description": "School Grading System",
-  "productName": "Quasar App",
+  "productName": "SGS",
   "author": "smzimela <smzimela@student.wethinkcode.co.za>",
   "private": true,
   "scripts": {
-    "build": "quasar build",
-    "start": "node server.js",
-    "heroku-postbuild": "npm && npm build"
+    "start": "node server.js"
   },
   "dependencies": {
     "@quasar/extras": "^1.0.0",
@@ -24,7 +22,14 @@
   },
   "devDependencies": {
     "@quasar/app-vite": "^1.0.0",
-    "autoprefixer": "^10.4.2"
+    "autoprefixer": "^10.4.2",
+    "workbox-build": "^6.5.0",
+    "workbox-cacheable-response": "^6.5.0",
+    "workbox-core": "^6.5.0",
+    "workbox-expiration": "^6.5.0",
+    "workbox-precaching": "^6.5.0",
+    "workbox-routing": "^6.5.0",
+    "workbox-strategies": "^6.5.0"
   },
   "engines": {
     "node": "^18 || ^16 || ^14.19",

@@ -59,15 +59,18 @@ const show_pass = ()=> {
   }
 
 
-const submit = async ()=>{
-    await api
+const submit = ()=>{
+  api.get('/sanctum/csrf-cookie').then(response => {
+    api
       .post("/register", form)
       .then((response) => {
         router.push("/verify-email");
       })
       .catch((error) => {
         console.log(error);
+        console.log(error.response);
       });
+  });
   }
 
 
