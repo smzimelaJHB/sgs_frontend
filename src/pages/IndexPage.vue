@@ -1,5 +1,6 @@
 <template lang="pug">
 
+
 div(v-if="isData")
   q-table(:rows="rows",:columns="columns",row-key="name",title-class="text-bold text-blue-9",table-class="text-black",table-header-style="height: 65px;",:filter="filter")
       template(v-slot:top-right)
@@ -14,14 +15,37 @@ div(v-if="isData")
                   | {{ props.row.schoolName }}
               q-td(key="email", :props="props")
                   | {{ props.row.email }}
+  q-btn(@click="showAddSchool = true"  round, color="cyan-8", icon="add" ).
+  div
+    q-dialog(v-model="showAddSchool")
+      q-card
+        q-card-section
+          .text-h6 Alert
+        q-card-section.q-pt-none.
+
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum repellendus sit voluptate voluptas eveniet porro. Rerum blanditiis perferendis totam, ea at omnis vel numquam exercitationem aut, natus minima, porro labore.
+
+        q-card-actions(align="right")
+          q-btn(flat, label="OK", color="primary", v-close-popup).
+
+
+
+
 .absolute-center(v-else)
   q-spinner-hourglass(color="purple", size="4em" text="Loading...")
 
-</template>
+    </template>
 
 <script setup>
 import { onMounted, ref, reactive } from "vue";
+
+import { useQuasar } from "quasar";
+
 import { api } from "boot/axios";
+
+const $q = useQuasar();
+
+let showAddSchool = ref();
 
 const columns = ref([
   {
@@ -59,6 +83,7 @@ const schools = async () => {
       rows.value = response.data.data;
       if (rows.value.length > 0) {
         isData.value = true;
+        console.log(response.data);
       } else {
         isData.value = false;
       }
