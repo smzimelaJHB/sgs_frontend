@@ -9,9 +9,9 @@ import axios from 'axios'
 // for each client)
 const api = axios.create(
   {
-    baseURL: 'https://s-g-s.herokuapp.com/',
+    baseURL: 'https://s-g-s.herokuapp.com',
     headers: {
-    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Origin": "s-g-s-frontend.herokuapp.com",
     'X-Requested-With': 'XMLHttpRequest',
     },
     withCredentials: true,
